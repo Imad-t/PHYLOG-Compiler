@@ -1,0 +1,38 @@
+Program1
+DATA
+    § Declaration of integer variables
+    INTEGER: Counter | Sum | Value;
+    
+    § Declaration of a float constant
+    CONST: Pi = 3.14159;
+    
+    § Declaration of a vector
+    VECTOR: Numbers[1, 10: INTEGER];
+    
+    § Declaration of string variable
+    STRING: Message;
+END
+CODE
+    § Initialization
+    Message = "Hello PHYLOG";
+    Counter = 1;
+    Sum = 0;
+    
+    § Loop to sum up numbers
+    FOR (Counter: 1: Counter .LE. 10)
+        READ ("$":@ Value);
+        Numbers[Counter] = Value;
+        Sum = Sum + Value;
+    END
+    
+    § Display the results
+    DISPLAY ("The sum is $": Sum);
+    
+    § Conditional statement
+    IF (Sum .G. 50):
+        DISPLAY ("Sum is greater than 50 $": Sum);
+    ELSE:
+        DISPLAY ("Sum is less than or equal to 50 $": Sum);
+    END
+END
+END 
