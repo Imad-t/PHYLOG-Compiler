@@ -1,0 +1,465 @@
+Starting build process...
+Created output directories
+Compiling parser...
+Compiling lexer...
+Compiling the program...
+Build successful. Running the program...
+Returning token IDENTIFIER: Program1
+DEBUG: Parsed program header: Program1
+Returning token IDENTIFIER: Counter
+Returning token IDENTIFIER: Sum
+Returning token IDENTIFIER: Value
+DEBUG: Parsing identifier in var_list: Value
+DEBUG: Parsing identifier with bar in var_list: Sum
+DEBUG: Parsing identifier with bar in var_list: Counter
+DEBUG: Completed type declaration
+DEBUG: Parsed type declaration
+DEBUG: Parsed declaration
+Returning token IDENTIFIER: Pi
+DEBUG: Parsed float constant: 3.14159
+DEBUG: Parsing const declaration for: Pi
+DEBUG: Parsed const declaration
+DEBUG: Parsed multiple declarations
+Returning token IDENTIFIER: Numbers
+DEBUG: Parsing vector declaration for: Numbers
+DEBUG: Parsed vector declaration
+DEBUG: Parsed multiple declarations
+Returning token IDENTIFIER: Message
+DEBUG: Parsing identifier in var_list: Message
+DEBUG: Completed type declaration
+DEBUG: Parsed type declaration
+DEBUG: Parsed multiple declarations
+Returning token END
+DEBUG: Parsed data section
+DEBUG: Starting code section
+Returning token IDENTIFIER: Message
+DEBUG: Parsing left-hand side as identifier: Message
+DEBUG: Parsed string constant: "Hello PHYLOG"
+DEBUG: Parsing item as constant: "Hello PHYLOG"
+DEBUG: Parsed term as item: "Hello PHYLOG"
+DEBUG: Parsed expression as term: "Hello PHYLOG"
+DEBUG: Parsing assignment for: Message = "Hello PHYLOG"
+DEBUG: Parsed assignment statement
+DEBUG: Parsed statement
+Returning token IDENTIFIER: Counter
+DEBUG: Parsing left-hand side as identifier: Counter
+DEBUG: Parsed integer constant: 1
+DEBUG: Parsing item as constant: 1
+DEBUG: Parsed term as item: 1
+DEBUG: Parsed expression as term: 1
+DEBUG: Parsing assignment for: Counter = 1
+DEBUG: Parsed assignment statement
+DEBUG: Parsed multiple statements
+Returning token IDENTIFIER: Sum
+DEBUG: Parsing left-hand side as identifier: Sum
+DEBUG: Parsed integer constant: 0
+DEBUG: Parsing item as constant: 0
+DEBUG: Parsed term as item: 0
+DEBUG: Parsed expression as term: 0
+DEBUG: Parsing assignment for: Sum = 0
+DEBUG: Parsed assignment statement
+DEBUG: Parsed multiple statements
+Returning token IDENTIFIER: Counter
+DEBUG: Parsed integer constant: 1
+DEBUG: Parsing item as constant: 1
+DEBUG: Parsed term as item: 1
+DEBUG: Parsed expression as term: 1
+Returning token IDENTIFIER: Counter
+DEBUG: Parsing item as identifier: Counter
+DEBUG: Parsed term as item: Counter
+DEBUG: Parsed expression as term: Counter
+DEBUG: Parsed LESS_OR_EQUAL operator
+DEBUG: Parsed integer constant: 10
+DEBUG: Parsing item as constant: 10
+DEBUG: Parsed term as item: 10
+DEBUG: Parsed expression as term: 10
+DEBUG: Parsed condition with comparison
+Returning token IDENTIFIER: Value
+DEBUG: Parsing READ statement for: Value
+DEBUG: Parsed read statement
+DEBUG: Parsed statement
+Returning token IDENTIFIER: Numbers
+Returning token IDENTIFIER: Counter
+DEBUG: Parsing item as identifier: Counter
+DEBUG: Parsed term as item: Counter
+DEBUG: Parsed expression as term: Counter
+DEBUG: Parsing array access for: Numbers
+DEBUG: Parsing left-hand side as array access: Numbers[Counter]
+Returning token IDENTIFIER: Value
+DEBUG: Parsing item as identifier: Value
+DEBUG: Parsed term as item: Value
+DEBUG: Parsed expression as term: Value
+DEBUG: Parsing assignment for: Numbers[Counter] = Value
+DEBUG: Parsed assignment statement
+DEBUG: Parsed multiple statements
+Returning token IDENTIFIER: Sum
+DEBUG: Parsing left-hand side as identifier: Sum
+Returning token IDENTIFIER: Sum
+DEBUG: Parsing item as identifier: Sum
+DEBUG: Parsed term as item: Sum
+DEBUG: Parsed expression as term: Sum
+DEBUG: Parsed PLUS operator
+Returning token IDENTIFIER: Value
+DEBUG: Parsing item as identifier: Value
+DEBUG: Parsed term as item: Value
+DEBUG: Parsed expression with math op
+DEBUG: Parsing assignment for: Sum = t2
+DEBUG: Parsed assignment statement
+DEBUG: Parsed multiple statements
+Returning token END
+DEBUG: Parsed FOR statement
+DEBUG: Parsed for statement
+DEBUG: Parsed multiple statements
+Returning token IDENTIFIER: Sum
+DEBUG: Parsing item as identifier: Sum
+DEBUG: Parsing DISPLAY statement
+DEBUG: Parsed display statement
+DEBUG: Parsed multiple statements
+Returning token IDENTIFIER: Sum
+DEBUG: Parsing item as identifier: Sum
+DEBUG: Parsed term as item: Sum
+DEBUG: Parsed expression as term: Sum
+DEBUG: Parsed GREATER operator
+DEBUG: Parsed integer constant: 50
+DEBUG: Parsing item as constant: 50
+DEBUG: Parsed term as item: 50
+DEBUG: Parsed expression as term: 50
+DEBUG: Parsed condition with comparison
+Returning token IDENTIFIER: Sum
+DEBUG: Parsing item as identifier: Sum
+DEBUG: Parsing DISPLAY statement
+DEBUG: Parsed display statement
+DEBUG: Parsed statement
+DEBUG: Parsed IF body
+Returning token IDENTIFIER: Sum
+DEBUG: Parsing item as identifier: Sum
+DEBUG: Parsing DISPLAY statement
+DEBUG: Parsed display statement
+DEBUG: Parsed statement
+Returning token END
+DEBUG: Parsed ELSE body
+DEBUG: Parsed IF-ELSE statement
+DEBUG: Parsed if statement
+DEBUG: Parsed multiple statements
+Returning token END
+DEBUG: Completed statements
+DEBUG: Completed code section
+Returning token END
+DEBUG: Parsed program end
+SYNTAX CORRECT 
+
+
+
+
+
+--------------------------------------------------------
+
+                    1-Symbole Table
+
+--------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+| Name                                          | Code                           | Type                           | Value      |
+--------------------------------------------------------------------------------------------------------------------------------
+| IF                                            | KEYWORD                        |                                | 0.00       |
+| .LE.                                          | OPERATOR                       |                                | 0.00       |
+| (                                             | SEPARATOR                      |                                | 0.00       |
+| END                                           | KEYWORD                        |                                | 0.00       |
+| )                                             | SEPARATOR                      |                                | 0.00       |
+| CODE                                          | KEYWORD                        |                                | 0.00       |
+| 1                                             | CONSTANT                       | INTEGER                        | 1.00       |
+| [                                             | SEPARATOR                      |                                | 0.00       |
+| 3.14159                                       | CONSTANT                       | FLOAT                          | 3.14       |
+| =                                             | OPERATOR                       |                                | 0.00       |
+| ;                                             | SEPARATOR                      |                                | 0.00       |
+| Program1                                      | IDENTIFIER                     |                                | 0.00       |
+| "Sum is greater than 50 $"                    | CONSTANT                       | STRING                         | 0.00       |
+| "Hello PHYLOG"                                | CONSTANT                       | STRING                         | 0.00       |
+| 10                                            | CONSTANT                       | INTEGER                        | 10.00      |
+| VECTOR                                        | KEYWORD                        |                                | 0.00       |
+| CONST                                         | KEYWORD                        |                                | 0.00       |
+| INTEGER                                       | TYPE                           |                                | 0.00       |
+| "$"                                           | CONSTANT                       | STRING                         | 0.00       |
+| READ                                          | FUNCTION                       |                                | 0.00       |
+| 0                                             | CONSTANT                       | INTEGER                        | 0.00       |
+| Value                                         | IDENTIFIER                     | INTEGER                        | 0.00       |
+| Counter                                       | IDENTIFIER                     | INTEGER                        | 0.00       |
+| :                                             | SEPARATOR                      |                                | 0.00       |
+| Numbers                                       | IDENTIFIER                     | VECTOR_INTEGER                 | 0.00       |
+| Pi                                            | IDENTIFIER                     | CONST                          | 0.00       |
+| DATA                                          | KEYWORD                        |                                | 0.00       |
+| "Sum is less than or equal to 50 $"           | CONSTANT                       | STRING                         | 0.00       |
+| ELSE                                          | KEYWORD                        |                                | 0.00       |
+| 50                                            | CONSTANT                       | INTEGER                        | 50.00      |
+| "The sum is $"                                | CONSTANT                       | STRING                         | 0.00       |
+| DISPLAY                                       | FUNCTION                       |                                | 0.00       |
+| @                                             | OPERATOR                       |                                | 0.00       |
+| FOR                                           | KEYWORD                        |                                | 0.00       |
+| ,                                             | SEPARATOR                      |                                | 0.00       |
+| |                                             | SEPARATOR                      |                                | 0.00       |
+| Message                                       | IDENTIFIER                     | STRING                         | 0.00       |
+| .G.                                           | OPERATOR                       |                                | 0.00       |
+| +                                             | OPERATOR                       |                                | 0.00       |
+| STRING                                        | TYPE                           |                                | 0.00       |
+| ]                                             | SEPARATOR                      |                                | 0.00       |
+| Sum                                           | IDENTIFIER                     | INTEGER                        | 0.00       |
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+--------------------------------------------------------
+
+                    2-Quadruplets
+
+--------------------------------------------------------
+
+ 0 - ( :=  ,  3.14159  ,    ,  Pi )
+
+--------------------------------------------------------
+
+ 1 - ( :=  ,  "Hello PHYLOG"  ,    ,  Message )
+
+--------------------------------------------------------
+
+ 2 - ( :=  ,  1  ,    ,  Counter )
+
+--------------------------------------------------------
+
+ 3 - ( :=  ,  0  ,    ,  Sum )
+
+--------------------------------------------------------
+
+ 4 - ( BG  ,  11  ,  10  ,    )
+
+--------------------------------------------------------
+
+ 5 - ( READ  ,  "$"  ,    ,  Value )
+
+--------------------------------------------------------
+
+ 6 - ( []=  ,  Value  ,  Counter  ,  Numbers )
+
+--------------------------------------------------------
+
+ 7 - ( +  ,  Sum  ,  Value  ,  t2 )
+
+--------------------------------------------------------
+
+ 8 - ( :=  ,  t2  ,    ,  Sum )
+
+--------------------------------------------------------
+
+ 9 - ( +  ,  Counter  ,  1  ,  Counter )
+
+--------------------------------------------------------
+
+ 10 - ( BR  ,    ,    ,  4 )
+
+--------------------------------------------------------
+
+ 11 - ( DISPLAY  ,  "The sum is $"  ,  Sum  ,   )
+
+--------------------------------------------------------
+
+ 12 - ( BLE  ,  Sum  ,  50  ,    )
+
+--------------------------------------------------------
+
+ 13 - ( DISPLAY  ,  "Sum is greater than 50 $Sum  ,  Sum  ,   )
+
+--------------------------------------------------------
+
+ 14 - ( BR  ,  16  ,     ,    )
+
+--------------------------------------------------------
+
+ 15 - ( DISPLAY  ,  "Sum is less than or equaSum  ,  Sum  ,   )
+
+--------------------------------------------------------
+
+
+
+
+
+--------------------------------------------------------
+
+                    3-Generated Code
+
+--------------------------------------------------------
+
+0:	
+ |	 Assignment
+ |	 MOV AX, 3.14159
+ |	 MOV Pi, AX
+
+1:	
+ |	 Assignment
+ |	 MOV AX, "Hello PHYLOG"
+ |	 MOV Message, AX
+
+2:	
+ |	 Assignment
+ |	 MOV AX, 1
+ |	 MOV Counter, AX
+
+3:	
+ |	 Assignment
+ |	 MOV AX, 0
+ |	 MOV Sum, AX
+
+4:	
+5:	
+6:	
+7:	
+ |	 Addition
+ |	 MOV AX, Sum
+ |	 ADD AX, Value
+ |	 MOV t2, AX
+
+8:	
+ |	 Assignment
+ |	 MOV AX, t2
+ |	 MOV Sum, AX
+
+9:	
+ |	 Addition
+ |	 MOV AX, Counter
+ |	 ADD AX, 1
+ |	 MOV Counter, AX
+
+10:	
+11:	
+12:	
+13:	
+14:	
+15:	
+
+
+
+
+--------------------------------------------------------
+
+               4-Quadruplets after Optimization
+
+--------------------------------------------------------
+
+ 0 - ( Dead Code  ,  Dead Code  ,  Dead Code  ,  Dead Code )
+
+--------------------------------------------------------
+
+ 1 - ( :=  ,  Dead Code  ,     ,  Dead Code )
+
+--------------------------------------------------------
+
+ 2 - ( :=  ,  1  ,    ,  Counter )
+
+--------------------------------------------------------
+
+ 3 - ( :=  ,  0  ,    ,  Sum )
+
+--------------------------------------------------------
+
+ 4 - ( BG  ,  11  ,  10  ,    )
+
+--------------------------------------------------------
+
+ 5 - ( READ  ,  "$"  ,    ,  Value )
+
+--------------------------------------------------------
+
+ 6 - ( []=  ,  Value  ,  Counter  ,  Numbers )
+
+--------------------------------------------------------
+
+ 7 - ( +  ,  Sum  ,  Value  ,  t2 )
+
+--------------------------------------------------------
+
+ 8 - ( :=  ,  t2  ,    ,  Sum )
+
+--------------------------------------------------------
+
+ 9 - ( +  ,  Counter  ,  1  ,  Counter )
+
+--------------------------------------------------------
+
+ 10 - ( BR  ,    ,    ,  4 )
+
+--------------------------------------------------------
+
+ 11 - ( DISPLAY  ,  "The sum is $"  ,  Sum  ,   )
+
+--------------------------------------------------------
+
+ 12 - ( BLE  ,  Sum  ,  50  ,    )
+
+--------------------------------------------------------
+
+ 13 - ( DISPLAY  ,  "Sum is greater than 50 $Sum  ,  Sum  ,   )
+
+--------------------------------------------------------
+
+ 14 - ( BR  ,  16  ,     ,    )
+
+--------------------------------------------------------
+
+ 15 - ( DISPLAY  ,  "Sum is less than or equaSum  ,  Sum  ,   )
+
+--------------------------------------------------------
+
+
+
+
+
+--------------------------------------------------------
+
+            5-Generated Code after Optimization
+
+--------------------------------------------------------
+
+0:	
+1:	
+ |	 Assignment
+ |	 MOV AX, Dead Code
+ |	 MOV Dead Code, AX
+
+2:	
+ |	 Assignment
+ |	 MOV AX, 1
+ |	 MOV Counter, AX
+
+3:	
+ |	 Assignment
+ |	 MOV AX, 0
+ |	 MOV Sum, AX
+
+4:	
+5:	
+6:	
+7:	
+ |	 Addition
+ |	 MOV AX, Sum
+ |	 ADD AX, Value
+ |	 MOV t2, AX
+
+8:	
+ |	 Assignment
+ |	 MOV AX, t2
+ |	 MOV Sum, AX
+
+9:	
+ |	 Addition
+ |	 MOV AX, Counter
+ |	 ADD AX, 1
+ |	 MOV Counter, AX
+
+10:	
+11:	
+12:	
+13:	
+14:	
+15:	
+
+
+Program execution complete.
