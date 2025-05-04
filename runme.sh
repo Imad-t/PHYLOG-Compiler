@@ -10,7 +10,7 @@ echo "Created output directories"
 
 # Generate parser from Bison grammar
 echo "Compiling parser..."
-bison -d -o out/bison/synt.tab.c src/parser/parser.y
+bison -d -Wcounterexamples -o out/bison/synt.tab.c src/parser/parser.y
 if [ $? -ne 0 ]; then
     echo "Failed to compile parser"
     exit 1

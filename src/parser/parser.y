@@ -36,29 +36,27 @@
 %token <str> IDENTIFIER INTEGER_TYPE FLOAT_TYPE CHAR_TYPE STRING_TYPE CONST
 %token <str> DATA CODE END VECTOR
 %token <str> FOR IF ELSE
-%token <str> LOGICAL_AND LOGICAL_NOT LOGICAL_OR
-%token <str> ASSIGN EQUAL NOT_EQUAL LESS LESS_OR_EQUAL GREATER GREATER_OR_EQUAL
+%right <str> ASSIGN
 %token <str> LPAREN RPAREN LBRACKET RBRACKET COLON COMMA SEMICOLON BAR
-%token <str> PLUS MINUS MUL DIV
 %token <str> READ DISPLAY AT 
 %token <str> INTEGER_CONST FLOAT_CONST CHAR_CONST STRING_CONST
 
 %type <str> declaration type item constant condition expression term
-%type <str> math_operator comparision_operator logical_operator
+%type <str> math_operator comparision_operator
 %type <str> program program_header data_section code_section program_end
 %type <str> declarations type_declaration vector_declaration const_declaration
 %type <str> var_list statements statement assignment read_statement
 %type <str> display_statement if_statement if_body else_body for_statement
 %type <str> left_hand_side array_access
 
-/* Set operator precedence to resolve shift/reduce conflicts */
-%left LOGICAL_OR
-%left LOGICAL_AND
-%left EQUAL NOT_EQUAL
-%left LESS LESS_OR_EQUAL GREATER GREATER_OR_EQUAL
-%left PLUS MINUS
-%left MUL DIV
-%right LOGICAL_NOT
+/* Operator precedence from lowest to highest */
+%right <str> LOGICAL_OR
+%right <str> EQUAL NOT_EQUAL
+%left <str> LOGICAL_AND
+%left <str> LESS LESS_OR_EQUAL GREATER GREATER_OR_EQUAL
+%left <str> PLUS MINUS
+%left <str> MUL DIV
+%right <str> LOGICAL_NOT
 
 /* Resolve the dangling else problem */
 %nonassoc IFX
@@ -302,7 +300,6 @@ for_statement: FOR LPAREN IDENTIFIER COLON expression COLON condition RPAREN sta
   quad_updated(qc_saver, 2, temp); // Update condition’s exit target
   $$ = "FOR_STATEMENT";
 }
-
 condition: expression comparision_operator expression {
   if(debug) printf("DEBUG: Parsed condition with comparison\n");
   sprintf(temp, "t%d", tempCounter++);
@@ -331,23 +328,31 @@ condition: expression comparision_operator expression {
     if(debug) printf("DEBUG: Parsed parenthesized condition\n");
     $$ = $2; 
   }
-  | condition logical_operator condition {
-    if(debug) printf("DEBUG: Parsed logical condition\n");
+  | condition LOGICAL_AND {
+    if(debug) printf("DEBUG: Parsed AND operator\n");
+    $2 = ".AND.";
+  } condition {
+    if(debug) printf("DEBUG: Parsed logical AND condition\n");
     sprintf(temp, "t%d", tempCounter++);
-    if(strcmp($2, ".AND.") == 0){
-      quad("AND", $1, $3, temp);
-    }
-    else if(strcmp($2, ".OR.") == 0){
-      quad("OR", $1, $3, temp);
-    }
+    quad("AND", $1, $4, temp);
     $$ = temp;
   }
-  | LOGICAL_NOT expression {
-    if(debug) printf("DEBUG: Parsed NOT condition\n");
+  | condition LOGICAL_OR { 
+    if(debug) printf("DEBUG: Parsed OR operator\n");
+    $2 = ".OR."; 
+  } condition {
+    if(debug) printf("DEBUG: Parsed logical OR condition\n");
+    sprintf(temp, "t%d", tempCounter++);
+    quad("OR", $1, $4, temp);
+    $$ = temp;
+  }
+  | LOGICAL_NOT condition {
+    if(debug) printf("DEBUG: Parsed logical NOT condition\n");
     sprintf(temp, "t%d", tempCounter++);
     quad("NOT", $2, "", temp);
     $$ = temp;
   }
+;
 
 comparision_operator: GREATER { 
   if(debug) printf("DEBUG: Parsed GREATER operator\n");
@@ -373,15 +378,7 @@ comparision_operator: GREATER {
     if(debug) printf("DEBUG: Parsed NOT_EQUAL operator\n");
     $$ = ".DI."; 
   }
-
-logical_operator: LOGICAL_AND { 
-  if(debug) printf("DEBUG: Parsed AND operator\n");
-  $$ = ".AND."; 
-}
-  | LOGICAL_OR { 
-    if(debug) printf("DEBUG: Parsed OR operator\n");
-    $$ = ".OR."; 
-  }
+;
 
 expression: expression math_operator term {
   if(debug) printf("DEBUG: Parsed expression with math op\n");

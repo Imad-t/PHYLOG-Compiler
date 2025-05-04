@@ -361,7 +361,7 @@ SIGNED_INTEGER \(\-{DIGIT}+\)
   column_position = column_position + yyleng;
 }
 
-\n { 
+\r?\n { 
   number_of_lines++;
   column_position = 0;
 }
