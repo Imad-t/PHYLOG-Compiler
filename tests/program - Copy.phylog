@@ -22,7 +22,7 @@ CODE
     FOR (Counter: 1: Counter .LE. 10)
         READ ("$":@ Value);
         Numbers[Counter] = Value;
-        Sum = Sum / 0;
+        Sum = Sum + Value;
     END
     
     § Display the results

@@ -381,6 +381,13 @@ comparision_operator: GREATER {
 ;
 
 expression: expression math_operator term {
+
+  if($2 == "/" && strcmp($3, "0") == 0){
+    printf("Semantic error: division by zero, in line %d \n", number_of_lines);
+    error=1;
+    YYERROR;
+  }
+
   if(debug) printf("DEBUG: Parsed expression with math op\n");
   sprintf(temp, "t%d", tempCounter++);
   quad($2, $1, $3, temp);

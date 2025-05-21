@@ -599,8 +599,8 @@ static const yytype_int16 yyrline[] =
      177,   181,   185,   190,   194,   199,   203,   207,   211,   215,
      220,   230,   235,   247,   260,   266,   272,   279,   286,   291,
      303,   327,   331,   331,   340,   340,   349,   357,   361,   365,
-     369,   373,   377,   383,   389,   394,   398,   403,   407,   411,
-     415,   420,   430,   434,   439,   452,   456,   460,   464
+     369,   373,   377,   383,   396,   401,   405,   410,   414,   418,
+     422,   427,   437,   441,   446,   459,   463,   467,   471
 };
 #endif
 
@@ -1815,79 +1815,86 @@ yyreduce:
   case 53: /* expression: expression math_operator term  */
 #line 383 "src/parser/parser.y"
                                           {
+
+  if((yyvsp[-1].str) == "/" && strcmp((yyvsp[0].str), "0") == 0){
+    printf("Semantic error: division by zero, in line %d \n", number_of_lines);
+    error=1;
+    YYERROR;
+  }
+
   if(debug) printf("DEBUG: Parsed expression with math op\n");
   sprintf(temp, "t%d", tempCounter++);
   quad((yyvsp[-1].str), (yyvsp[-2].str), (yyvsp[0].str), temp);
   (yyval.str) = temp;
 }
-#line 1824 "out/bison/synt.tab.c"
+#line 1831 "out/bison/synt.tab.c"
     break;
 
   case 54: /* expression: term  */
-#line 389 "src/parser/parser.y"
+#line 396 "src/parser/parser.y"
          { 
     if(debug) printf("DEBUG: Parsed expression as term: %s\n", (yyvsp[0].str));
     (yyval.str) = (yyvsp[0].str); 
   }
-#line 1833 "out/bison/synt.tab.c"
+#line 1840 "out/bison/synt.tab.c"
     break;
 
   case 55: /* term: item  */
-#line 394 "src/parser/parser.y"
+#line 401 "src/parser/parser.y"
            { 
   if(debug) printf("DEBUG: Parsed term as item: %s\n", (yyvsp[0].str));
   (yyval.str) = (yyvsp[0].str); 
 }
-#line 1842 "out/bison/synt.tab.c"
+#line 1849 "out/bison/synt.tab.c"
     break;
 
   case 56: /* term: LPAREN expression RPAREN  */
-#line 398 "src/parser/parser.y"
+#line 405 "src/parser/parser.y"
                              { 
     if(debug) printf("DEBUG: Parsed term with parentheses\n");
     (yyval.str) = (yyvsp[-1].str); 
   }
-#line 1851 "out/bison/synt.tab.c"
+#line 1858 "out/bison/synt.tab.c"
     break;
 
   case 57: /* math_operator: PLUS  */
-#line 403 "src/parser/parser.y"
+#line 410 "src/parser/parser.y"
                     { 
   if(debug) printf("DEBUG: Parsed PLUS operator\n");
     (yyval.str) = "+"; 
 }
-#line 1860 "out/bison/synt.tab.c"
+#line 1867 "out/bison/synt.tab.c"
     break;
 
   case 58: /* math_operator: MINUS  */
-#line 407 "src/parser/parser.y"
+#line 414 "src/parser/parser.y"
           { 
     if(debug) printf("DEBUG: Parsed MINUS operator\n");
     (yyval.str) = "-"; 
   }
-#line 1869 "out/bison/synt.tab.c"
+#line 1876 "out/bison/synt.tab.c"
     break;
 
   case 59: /* math_operator: MUL  */
-#line 411 "src/parser/parser.y"
+#line 418 "src/parser/parser.y"
         { 
     if(debug) printf("DEBUG: Parsed MUL operator\n");
     (yyval.str) = "*"; 
   }
-#line 1878 "out/bison/synt.tab.c"
+#line 1885 "out/bison/synt.tab.c"
     break;
 
   case 60: /* math_operator: DIV  */
-#line 415 "src/parser/parser.y"
+#line 422 "src/parser/parser.y"
         { 
     if(debug) printf("DEBUG: Parsed DIV operator\n");
     (yyval.str) = "/"; 
   }
-#line 1887 "out/bison/synt.tab.c"
+#line 1894 "out/bison/synt.tab.c"
     break;
 
   case 61: /* item: IDENTIFIER  */
-#line 420 "src/parser/parser.y"
+#line 427 "src/parser/parser.y"
                  {
   if(debug) printf("DEBUG: Parsing item as identifier: %s\n", (yyvsp[0].str));
   element *identifier = symbol_table_search((yyvsp[0].str));
@@ -1898,29 +1905,29 @@ yyreduce:
   }
   (yyval.str) = (yyvsp[0].str);
 }
-#line 1902 "out/bison/synt.tab.c"
+#line 1909 "out/bison/synt.tab.c"
     break;
 
   case 62: /* item: constant  */
-#line 430 "src/parser/parser.y"
+#line 437 "src/parser/parser.y"
              { 
     if(debug) printf("DEBUG: Parsing item as constant: %s\n", (yyvsp[0].str));
     (yyval.str) = (yyvsp[0].str); 
   }
-#line 1911 "out/bison/synt.tab.c"
+#line 1918 "out/bison/synt.tab.c"
     break;
 
   case 63: /* item: array_access  */
-#line 434 "src/parser/parser.y"
+#line 441 "src/parser/parser.y"
                  { 
     if(debug) printf("DEBUG: Parsing item as array access\n");
     (yyval.str) = (yyvsp[0].str); 
   }
-#line 1920 "out/bison/synt.tab.c"
+#line 1927 "out/bison/synt.tab.c"
     break;
 
   case 64: /* array_access: IDENTIFIER LBRACKET expression RBRACKET  */
-#line 439 "src/parser/parser.y"
+#line 446 "src/parser/parser.y"
                                                       {
   if(debug) printf("DEBUG: Parsing array access for: %s\n", (yyvsp[-3].str));
   element *identifier = symbol_table_search((yyvsp[-3].str));
@@ -1933,47 +1940,47 @@ yyreduce:
   sprintf(result, "%s[%s]", (yyvsp[-3].str), (yyvsp[-1].str));
   (yyval.str) = result;
 }
-#line 1937 "out/bison/synt.tab.c"
+#line 1944 "out/bison/synt.tab.c"
     break;
 
   case 65: /* constant: INTEGER_CONST  */
-#line 452 "src/parser/parser.y"
+#line 459 "src/parser/parser.y"
                         { 
   if(debug) printf("DEBUG: Parsed integer constant: %s\n", (yyvsp[0].str));
   (yyval.str) = (yyvsp[0].str); 
 }
-#line 1946 "out/bison/synt.tab.c"
+#line 1953 "out/bison/synt.tab.c"
     break;
 
   case 66: /* constant: FLOAT_CONST  */
-#line 456 "src/parser/parser.y"
+#line 463 "src/parser/parser.y"
                 { 
     if(debug) printf("DEBUG: Parsed float constant: %s\n", (yyvsp[0].str));
   (yyval.str) = (yyvsp[0].str); 
   }
-#line 1955 "out/bison/synt.tab.c"
+#line 1962 "out/bison/synt.tab.c"
     break;
 
   case 67: /* constant: CHAR_CONST  */
-#line 460 "src/parser/parser.y"
+#line 467 "src/parser/parser.y"
                { 
     if(debug) printf("DEBUG: Parsed char constant: %s\n", (yyvsp[0].str));
     (yyval.str) = (yyvsp[0].str); 
   }
-#line 1964 "out/bison/synt.tab.c"
+#line 1971 "out/bison/synt.tab.c"
     break;
 
   case 68: /* constant: STRING_CONST  */
-#line 464 "src/parser/parser.y"
+#line 471 "src/parser/parser.y"
                  { 
     if(debug) printf("DEBUG: Parsed string constant: %s\n", (yyvsp[0].str));
     (yyval.str) = (yyvsp[0].str); 
   }
-#line 1973 "out/bison/synt.tab.c"
+#line 1980 "out/bison/synt.tab.c"
     break;
 
 
-#line 1977 "out/bison/synt.tab.c"
+#line 1984 "out/bison/synt.tab.c"
 
       default: break;
     }
@@ -2166,7 +2173,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 469 "src/parser/parser.y"
+#line 476 "src/parser/parser.y"
 
 
 void yyerror(const char* s)
